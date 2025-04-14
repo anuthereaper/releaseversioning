@@ -41,7 +41,7 @@ jobs:
       - name: Bump version
         id: bump_version
         run: |
-          IFS='.' read -r major minor patch <<<"${{ steps.get_tag.outputs.tag#v }}"
+          IFS='.' read -r major minor patch <<<"${{ steps.get_tag.outputs.tag }}"
           case "${{ steps.bump_type.outputs.bump }}" in
             major)
               major=$((major + 1))
