@@ -81,7 +81,7 @@ jobs:
           elif echo "${{ steps.labels.outputs.labels }}" | grep -q "version:minor"; then
             bump="minor"
           fi
-          echo "The bump will be ${{bump}}"
+          echo "The bump will be $bump"
           echo "bump=$bump" >> $GITHUB_OUTPUT
 
       - name: Bump version
