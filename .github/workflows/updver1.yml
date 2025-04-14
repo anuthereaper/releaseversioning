@@ -46,6 +46,10 @@ jobs:
                 core.setFailed("No PR found for commit");
               }
   
+      - name: Use versions
+        run: |
+            echo "Output: ${{ steps.find_pr.outputs.pr_number }}"
+
       - name: Get PR labels
         if: steps.find_pr.outputs.pr_number != ''
         id: get_labels
