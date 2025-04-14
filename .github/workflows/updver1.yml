@@ -22,9 +22,10 @@ jobs:
 
       - name: Get PR labels
         id: labels
-        uses: actions-ecosystem/action-get-latest-pr@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+        #uses: snnaplab/get-labels-action@v1 #actions-ecosystem/action-get-latest-pr@v1
+        run: |
+          echo github.event.label.name
+          echo "github.event.label.name" >> $labels
 
       - name: Determine bump type
         id: bump_type
