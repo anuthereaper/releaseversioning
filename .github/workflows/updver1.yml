@@ -77,14 +77,11 @@ jobs:
         id: bump_type
         run: |
           bump="patch"
-          if (contains(${{steps.labels.outputs.labels}}, 'version:major') then
+          echo "${{steps.labels.outputs.Labels}}"
+          if echo "${{steps.labels.outputs.labels}}" | grep -q "version:major"; then
             bump="major"
-          elif (contains(${{steps.labels.outputs.labels}},'version:minor') then
+          elif echo "${{steps.labels.outputs.labels}}" | grep -q "version:minor"; then
             bump="minor"
-          #if echo "${{ steps.labels.outputs.labels }}" | grep -q "version:major"; then
-          #  bump="major"
-          #elif echo "${{ steps.labels.outputs.labels }}" | grep -q "version:minor"; then
-          #  bump="minor"
           fi
           echo "The bump will be $bump"
           echo "bump=$bump" >> $GITHUB_OUTPUT
