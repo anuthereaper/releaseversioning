@@ -24,8 +24,8 @@ jobs:
         id: labels
         #uses: snnaplab/get-labels-action@v1 #actions-ecosystem/action-get-latest-pr@v1
         run: |
-          echo github.event.label.name
-          echo "github.event.label.name" >> $labels
+          echo $github.event.label.name
+          echo $github.event.label.name >> $labels
 
       - name: Determine bump type
         id: bump_type
