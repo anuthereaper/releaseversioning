@@ -12,6 +12,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0  # Needed to fetch tags
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Get latest tag
         id: get_tag
@@ -77,10 +78,10 @@ jobs:
         id: bump_type
         run: |
           bump="patch"
-          echo "${{steps.labels.outputs.Labels}}"
-          if echo "${{steps.labels.outputs.labels}}" | grep -q "version:major"; then
+          echo "${steps.labels.outputs.Labels}"
+          if echo "${steps.labels.outputs.labels}" | grep -q "version:major"; then
             bump="major"
-          elif echo "${{steps.labels.outputs.labels}}" | grep -q "version:minor"; then
+          elif echo "${steps.labels.outputs.labels}" | grep -q "version:minor"; then
             bump="minor"
           fi
           echo "The bump will be $bump"
