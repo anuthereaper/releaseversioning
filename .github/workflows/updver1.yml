@@ -81,12 +81,15 @@ jobs:
           elif echo "${{ steps.labels.outputs.labels }}" | grep -q "version:minor"; then
             bump="minor"
           fi
+          echo "The bump will be ${{bump}}"
           echo "bump=$bump" >> $GITHUB_OUTPUT
 
       - name: Bump version
         id: bump_version
         run: |
-          IFS='.' read -r major minor patch <<<"${{ steps.get_tag.outputs.tag }}"
+          TAG=${{ steps.get_tag.outputs.tag }}
+          echo "VERSION=${TAG#v}"
+          IFS='.' read -r major minor patch <<<"${ TAG#v }"
           case "${{ steps.bump_type.outputs.bump }}" in
             major)
               major=$((major + 1))
