@@ -89,7 +89,7 @@ jobs:
         run: |
           TAG=${{ steps.get_tag.outputs.tag }}
           VERSION=${TAG#v}
-          IFS='.' read -r major minor patch <<<"${ VERSION }"
+          IFS='.' read -r major minor patch <<<"${VERSION}"
           case "${{ steps.bump_type.outputs.bump }}" in
             major)
               major=$((major + 1))
